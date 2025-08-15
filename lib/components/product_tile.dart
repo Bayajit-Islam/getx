@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:getx/components/my_button.dart';
+import 'package:getx/model/shoe.dart';
 
 class ProductTile extends StatelessWidget {
-  const ProductTile({super.key});
+  final Shoe shoe;
+  final void Function()? ontap;
+  const ProductTile({super.key, required this.shoe,required this.ontap});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class ProductTile extends StatelessWidget {
         height: 400,
         decoration: BoxDecoration(
           color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(8)
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -21,45 +24,50 @@ class ProductTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               //product image
-              const SizedBox(height: 20,),
+              const SizedBox(height: 20),
               Container(
                 width: 200,
                 height: 200,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(8)
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(Icons.low_priority),
+                child: Image.asset(shoe.imagePath),
               ),
-                
+
               //title
-              const SizedBox(height: 30,),
+              const SizedBox(height: 30),
               Row(
                 children: [
-                  Text('AiR Jordan 301', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                  Text(
+                    shoe.productName,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
                 ],
               ),
-                
+
               //description
-              const SizedBox(height: 10,),
-              Text('A versatile running shoe with responsive Zoom Air cushioning and a breathable mesh upper, designed for everyday training and long-distance comfort.'),
-                
+              const SizedBox(height: 10),
+              Text(shoe.desc),
+
               //product price and add to cart
-              const  SizedBox(height: 10,),
+              Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   //price
-                  Text('\$99.99',style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text(
+                    "\$${shoe.price}",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   //add button
                   MyButton(
                     icon: Icons.add,
-                    ontap: () {
-                      //add to cart method here
-                    },
+                    ontap: ontap,
                   ),
                 ],
-              )
+              ),
+              SizedBox(height: 20),
             ],
           ),
         ),

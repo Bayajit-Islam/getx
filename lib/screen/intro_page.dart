@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getx/screen/home_pages.dart';
+import 'package:getx/screen/shop_page.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -30,7 +30,7 @@ class IntroPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePages()),
+                  MaterialPageRoute(builder: (context) => ShopPage()),
                 );
               },
               child: Container(
